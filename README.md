@@ -59,4 +59,7 @@ FastSave.getInstance().getObject(key,Person.class); // assuming your custom clas
 FastSave.getInstance().saveObjectList(key,listOfCustomObjects); // For Saving Custom Objects List
 FastSave.getInstance().getObjectList(key,classType); // For Getting Custom Objects List
 
+//clear all sharedPrefereces
+FastSave.getInstance().clearSession();
+
 ````
