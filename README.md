@@ -7,7 +7,7 @@ It allows you to save any type or list in the sharedpreferences and retrieve it 
 
 <b>Add jitpack.io to your root gradle file (project level)</b>
 
-```
+```groovy
 allprojects {
     repositories {
         ...
@@ -17,7 +17,7 @@ allprojects {
 ```
 <b>Add FastSave-Android to your app level build.gradle dependency</b>
 
-```
+```groovy
 dependencies {
     implementation 'com.github.yehiahd:FastSave-Android:1.0.1'
 }
@@ -26,7 +26,7 @@ dependencies {
 
 You have to initialize the FastSave library inside your application class :
 
-````
+```java
 public class MyApplication extends Application {
     @Override
     public void onCreate() {
@@ -35,11 +35,11 @@ public class MyApplication extends Application {
     }
 }
 
-````
+```
 
 <b>Usage</b>
 
-````
+```java
 FastSave.getInstance().saveInt(key,value); // For saving Integer value
 FastSave.getInstance().getInt(key); // For Getting Integer value
 
@@ -62,4 +62,4 @@ FastSave.getInstance().getObjectList(key,classType); // For Getting Custom Objec
 //clear all sharedPrefereces
 FastSave.getInstance().clearSession();
 
-````
+```
