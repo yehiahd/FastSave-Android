@@ -5,7 +5,7 @@ It allows you to save any type or list in the sharedpreferences and retrieve it 
 
 # Installation
 
-<b>Add FastSave-Android to your app level build.gradle dependency</b>
+<b>Add jitpack.io to your root gradle file (project level)</b>
 
 ```
 allprojects {
@@ -14,7 +14,10 @@ allprojects {
         maven { url 'https://jitpack.io' }
     }
 }
+```
+<b>Add FastSave-Android to your app level build.gradle dependency</b>
 
+```
 dependencies {
     implementation 'com.github.yehiahd:FastSave-Android:1.0.0'
 }
