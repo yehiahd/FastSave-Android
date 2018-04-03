@@ -19,7 +19,7 @@ allprojects {
 
 ```
 dependencies {
-    implementation 'com.github.yehiahd:FastSave-Android:1.0.0'
+    implementation 'com.github.yehiahd:FastSave-Android:1.0.1'
 }
 
 ```
