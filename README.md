@@ -5,24 +5,47 @@ It allows you to save any type or list in the sharedpreferences and retrieve it 
 
 # Installation
 
-<b>Add jitpack.io to your root gradle file (project level)</b>
 
-```groovy
-allprojects {
-    repositories {
-        ...
-        maven { url 'https://jitpack.io' }
-    }
-}
-```
-<b>Add FastSave-Android to your app level build.gradle dependency</b>
+* **Gradle**
 
-```groovy
-dependencies {
-    implementation 'com.github.yehiahd:FastSave-Android:1.0.2'
-}
+	Add jitpack.io to your root gradle file (project level) :
+	```gradle
+  allprojects {
+  		repositories {
+  			...
+  			maven { url 'https://jitpack.io' }
+  		}
+  	}
+	```
 
-```
+	Add the dependency in your app build.gradle
+	```gradle
+  dependencies {
+      implementation 'com.github.yehiahd:FastSave-Android:1.0.2'
+  }
+	```
+
+* **Maven**
+
+	Add the JitPack repository to your build file
+	```gradle
+	<repositories>
+    		<repository>
+    		    <id>jitpack.io</id>
+    		    <url>https://jitpack.io</url>
+    		</repository>
+    	</repositories>
+	```
+
+	Add FastSave-Android to your app level build.gradle dependency
+
+	```gradle
+  <dependency>
+  	    <groupId>com.github.yehiahd</groupId>
+  	    <artifactId>FastSave-Android</artifactId>
+  	    <version>1.0.2</version>
+  	</dependency>
+	```
 
 <b>You have to initialize the FastSave library inside your application class :</b>
 
