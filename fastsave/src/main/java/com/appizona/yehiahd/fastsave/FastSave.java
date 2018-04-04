@@ -3,11 +3,13 @@ package com.appizona.yehiahd.fastsave;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 import com.google.common.reflect.TypeParameter;
 import com.google.gson.Gson;
 
 import java.util.List;
+import java.util.Map;
 
 public class FastSave {
 
@@ -22,8 +24,8 @@ public class FastSave {
     }
 
     public static FastSave getInstance() {
-        validateInitialization();
         if (instance == null) {
+            validateInitialization();
             synchronized (FastSave.class) {
                 if (instance == null) {
                     instance = new FastSave();
@@ -40,7 +42,10 @@ public class FastSave {
     }
 
     public int getInt(String key) {
-        return mSharedPreferences.getInt(key, 0);
+        if (isValidKey(key)) {
+            return mSharedPreferences.getInt(key, 0);
+        }
+        return 0;
     }
 
     public void saveBoolean(String key, boolean value) {
@@ -50,7 +55,11 @@ public class FastSave {
     }
 
     public boolean getBoolean(String key) {
-        return mSharedPreferences.getBoolean(key, false);
+        if (isValidKey(key)) {
+            return mSharedPreferences.getBoolean(key, false);
+        } else {
+            return false;
+        }
     }
 
 
@@ -61,7 +70,10 @@ public class FastSave {
     }
 
     public float getFloat(String key) {
-        return mSharedPreferences.getFloat(key, 0.0f);
+        if (isValidKey(key)) {
+            return mSharedPreferences.getFloat(key, 0.0f);
+        }
+        return 0.0f;
     }
 
 
@@ -72,7 +84,10 @@ public class FastSave {
     }
 
     public long getLong(String key) {
-        return mSharedPreferences.getLong(key, 0);
+        if (isValidKey(key)) {
+            return mSharedPreferences.getLong(key, 0);
+        }
+        return 0;
     }
 
 
@@ -83,7 +98,10 @@ public class FastSave {
     }
 
     public String getString(String key) {
-        return mSharedPreferences.getString(key, "");
+        if (isValidKey(key)) {
+            return mSharedPreferences.getString(key, null);
+        }
+        return null;
     }
 
     public <T> void saveObject(String key, T object) {
@@ -94,31 +112,35 @@ public class FastSave {
     }
 
     public <T> T getObject(String key, Class<T> classType) {
-        String objectString = mSharedPreferences.getString(key, null);
-        if (objectString != null) {
-            return new Gson().fromJson(objectString, classType);
+        if (isValidKey(key)) {
+            String objectString = mSharedPreferences.getString(key, null);
+            if (objectString != null) {
+                return new Gson().fromJson(objectString, classType);
+            }
         }
         return null;
     }
 
 
-    public <T> void saveObjectList(String key, List<T> objectList) {
+    public <T> void saveObjectsList(String key, List<T> objectList) {
         String objectString = new Gson().toJson(objectList);
         SharedPreferences.Editor editor = mSharedPreferences.edit();
         editor.putString(key, objectString);
         editor.apply();
     }
 
-    public <T> List<T> getObjectList(String key, Class<T> classType) {
-
-        String objectString = mSharedPreferences.getString(key, null);
-        if (objectString != null) {
-            return new Gson().fromJson(objectString, new com.google.common.reflect.TypeToken<List<T>>() {
+    public <T> List<T> getObjectsList(String key, Class<T> classType) {
+        if (isValidKey(key)) {
+            String objectString = mSharedPreferences.getString(key, null);
+            if (objectString != null) {
+                return new Gson().fromJson(objectString, new com.google.common.reflect.TypeToken<List<T>>() {
+                }
+                        .where(new TypeParameter<T>() {
+                        }, classType)
+                        .getType());
             }
-                    .where(new TypeParameter<T>() {
-                    }, classType)
-                    .getType());
         }
+
         return null;
     }
 
@@ -128,10 +150,31 @@ public class FastSave {
         editor.apply();
     }
 
+    public boolean deleteValue(String key) {
+        if (isValidKey(key)) {
+            SharedPreferences.Editor editor = mSharedPreferences.edit();
+            editor.remove(key);
+            editor.apply();
+            return true;
+        }
+
+        return false;
+    }
+
 
     private static void validateInitialization() {
         if (mSharedPreferences == null)
             throw new FastException("FastSave Library must be initialized inside your application class by calling FastSave.init(getApplicationContext)");
+    }
+
+    private boolean isValidKey(String key) {
+        Map<String, ?> map = mSharedPreferences.getAll();
+        if (map.containsKey(key)) {
+            return true;
+        } else {
+            Log.e("FastSave", "No element founded in sharedPrefs with the key " + key);
+            return false;
+        }
     }
 
 }
