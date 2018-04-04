@@ -19,7 +19,7 @@ allprojects {
 
 ```groovy
 dependencies {
-    implementation 'com.github.yehiahd:FastSave-Android:1.0.1'
+    implementation 'com.github.yehiahd:FastSave-Android:1.0.2'
 }
 
 ```
