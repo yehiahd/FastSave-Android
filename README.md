@@ -24,7 +24,7 @@ dependencies {
 
 ```
 
-You have to initialize the FastSave library inside your application class :
+<b>You have to initialize the FastSave library inside your application class :</b>
 
 ```java
 public class MyApplication extends Application {
@@ -37,27 +37,45 @@ public class MyApplication extends Application {
 
 ```
 
-<b>Usage</b>
+### Usage
 
+<b>Saving Values</b>
 ```java
 FastSave.getInstance().saveInt(key,value); // For saving Integer value
-FastSave.getInstance().getInt(key); // For Getting Integer value
 
 FastSave.getInstance().saveFloat(key,value); // For saving Float value
+
+// And so on for other types.
+
+//For Objects and Lists of Objects
+FastSave.getInstance().saveObject(key,customObject); // For Saving Custom Object
+
+
+```
+
+<b>Getting Values</b>
+```java
+
+FastSave.getInstance().getInt(key); // For Getting Integer value
 FastSave.getInstance().getFloat(key); // For Getting Float value
 
 // And so on for other types.
 
 //For Objects and Lists of Objects
-
-FastSave.getInstance().saveObject(key,customObject); // For Saving Custom Object
 FastSave.getInstance().getObject(key,classType); // For Getting Custom Object
 
-//Example on getting customObject
 FastSave.getInstance().getObject(key,Person.class); // assuming your custom class called Person
 
-FastSave.getInstance().saveObjectList(key,listOfCustomObjects); // For Saving Custom Objects List
 FastSave.getInstance().getObjectList(key,classType); // For Getting Custom Objects List
+
+
+```
+
+<b>Deleting Values</b>
+```java
+
+//Remove element by Key
+FastSave.getInstance().deleteValue(key)
 
 //clear all sharedPrefereces
 FastSave.getInstance().clearSession();
