@@ -42,7 +42,6 @@ public class MyApplication extends Application {
 <b>Saving Values</b>
 ```java
 FastSave.getInstance().saveInt(key,value); // For saving Integer value
-
 FastSave.getInstance().saveFloat(key,value); // For saving Float value
 
 // And so on for other types.
@@ -50,6 +49,7 @@ FastSave.getInstance().saveFloat(key,value); // For saving Float value
 //For Objects and Lists of Objects
 FastSave.getInstance().saveObject(key,customObject); // For Saving Custom Object
 
+FastSave.getInstance().saveObjectList(key,listOfCustomObjects); // For Saving Custom Objects List
 
 ```
 
