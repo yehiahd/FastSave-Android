@@ -21,7 +21,7 @@ It allows you to save any type or list in the sharedpreferences and retrieve it 
 	Add the dependency in your app build.gradle
 	```gradle
   dependencies {
-      implementation 'com.github.yehiahd:FastSave-Android:1.0.2'
+      implementation 'com.github.yehiahd:FastSave-Android:1.0.3'
   }
 	```
 
