@@ -43,7 +43,7 @@ It allows you to save any type or list in the sharedpreferences and retrieve it 
   <dependency>
   	    <groupId>com.github.yehiahd</groupId>
   	    <artifactId>FastSave-Android</artifactId>
-  	    <version>1.0.2</version>
+  	    <version>1.0.3</version>
   	</dependency>
 	```
 
