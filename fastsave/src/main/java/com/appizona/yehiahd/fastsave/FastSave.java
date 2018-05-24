@@ -42,7 +42,7 @@ public class FastSave {
     }
 
     public int getInt(String key) {
-        if (isValidKey(key)) {
+        if (isKeyExists(key)) {
             return mSharedPreferences.getInt(key, 0);
         }
         return 0;
@@ -55,7 +55,7 @@ public class FastSave {
     }
 
     public boolean getBoolean(String key) {
-        if (isValidKey(key)) {
+        if (isKeyExists(key)) {
             return mSharedPreferences.getBoolean(key, false);
         } else {
             return false;
@@ -70,7 +70,7 @@ public class FastSave {
     }
 
     public float getFloat(String key) {
-        if (isValidKey(key)) {
+        if (isKeyExists(key)) {
             return mSharedPreferences.getFloat(key, 0.0f);
         }
         return 0.0f;
@@ -84,7 +84,7 @@ public class FastSave {
     }
 
     public long getLong(String key) {
-        if (isValidKey(key)) {
+        if (isKeyExists(key)) {
             return mSharedPreferences.getLong(key, 0);
         }
         return 0;
@@ -98,7 +98,7 @@ public class FastSave {
     }
 
     public String getString(String key) {
-        if (isValidKey(key)) {
+        if (isKeyExists(key)) {
             return mSharedPreferences.getString(key, null);
         }
         return null;
@@ -112,7 +112,7 @@ public class FastSave {
     }
 
     public <T> T getObject(String key, Class<T> classType) {
-        if (isValidKey(key)) {
+        if (isKeyExists(key)) {
             String objectString = mSharedPreferences.getString(key, null);
             if (objectString != null) {
                 return new Gson().fromJson(objectString, classType);
@@ -130,7 +130,7 @@ public class FastSave {
     }
 
     public <T> List<T> getObjectsList(String key, Class<T> classType) {
-        if (isValidKey(key)) {
+        if (isKeyExists(key)) {
             String objectString = mSharedPreferences.getString(key, null);
             if (objectString != null) {
                 return new Gson().fromJson(objectString, new com.google.common.reflect.TypeToken<List<T>>() {
@@ -151,7 +151,7 @@ public class FastSave {
     }
 
     public boolean deleteValue(String key) {
-        if (isValidKey(key)) {
+        if (isKeyExists(key)) {
             SharedPreferences.Editor editor = mSharedPreferences.edit();
             editor.remove(key);
             editor.apply();
@@ -167,7 +167,7 @@ public class FastSave {
             throw new FastException("FastSave Library must be initialized inside your application class by calling FastSave.init(getApplicationContext)");
     }
 
-    private boolean isValidKey(String key) {
+    public boolean isKeyExists(String key) {
         Map<String, ?> map = mSharedPreferences.getAll();
         if (map.containsKey(key)) {
             return true;
