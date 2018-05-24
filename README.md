@@ -104,3 +104,11 @@ FastSave.getInstance().deleteValue(key)
 FastSave.getInstance().clearSession();
 
 ```
+
+
+<b>Utils</b>
+```java
+
+//Check Key exists or not
+boolean isExists = FastSave.getInstance().isKeyExists()
+```
