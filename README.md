@@ -110,5 +110,5 @@ FastSave.getInstance().clearSession();
 ```java
 
 //Check Key exists or not
-boolean isExists = FastSave.getInstance().isKeyExists()
+boolean isExists = FastSave.getInstance().isKeyExists(key)
 ```
