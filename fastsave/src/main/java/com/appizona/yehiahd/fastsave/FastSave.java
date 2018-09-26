@@ -41,11 +41,11 @@ public class FastSave {
         editor.apply();
     }
 
-    public int getInt(String key) {
+    public int getInt(String key, int defaultValue) {
         if (isKeyExists(key)) {
-            return mSharedPreferences.getInt(key, 0);
+            return mSharedPreferences.getInt(key, defaultValue);
         }
-        return 0;
+        return defaultValue;
     }
 
     public void saveBoolean(String key, boolean value) {
@@ -54,12 +54,11 @@ public class FastSave {
         editor.apply();
     }
 
-    public boolean getBoolean(String key) {
+    public boolean getBoolean(String key, boolean defaultValue) {
         if (isKeyExists(key)) {
-            return mSharedPreferences.getBoolean(key, false);
-        } else {
-            return false;
+            return mSharedPreferences.getBoolean(key, defaultValue);
         }
+        return defaultValue;
     }
 
 
@@ -69,11 +68,11 @@ public class FastSave {
         editor.apply();
     }
 
-    public float getFloat(String key) {
+    public float getFloat(String key, float defaultValue) {
         if (isKeyExists(key)) {
-            return mSharedPreferences.getFloat(key, 0.0f);
+            return mSharedPreferences.getFloat(key, defaultValue);
         }
-        return 0.0f;
+        return defaultValue;
     }
 
 
@@ -83,11 +82,11 @@ public class FastSave {
         editor.apply();
     }
 
-    public long getLong(String key) {
+    public long getLong(String key, long defaultValue) {
         if (isKeyExists(key)) {
-            return mSharedPreferences.getLong(key, 0);
+            return mSharedPreferences.getLong(key, defaultValue);
         }
-        return 0;
+        return defaultValue;
     }
 
 
@@ -97,11 +96,11 @@ public class FastSave {
         editor.apply();
     }
 
-    public String getString(String key) {
+    public String getString(String key, String defaultValue) {
         if (isKeyExists(key)) {
-            return mSharedPreferences.getString(key, null);
+            return mSharedPreferences.getString(key, defaultValue);
         }
-        return null;
+        return defaultValue;
     }
 
     public <T> void saveObject(String key, T object) {
