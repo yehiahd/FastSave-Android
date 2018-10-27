@@ -79,8 +79,8 @@ FastSave.getInstance().saveObjectList(key,listOfCustomObjects); // For Saving Cu
 <b>Getting Values</b>
 ```java
 
-FastSave.getInstance().getInt(key); // For Getting Integer value
-FastSave.getInstance().getFloat(key); // For Getting Float value
+FastSave.getInstance().getInt(key,defaultValue); // For Getting Integer value
+FastSave.getInstance().getFloat(key,defaultValue); // For Getting Float value
 
 // And so on for other types.
 
