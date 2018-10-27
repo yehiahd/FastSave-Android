@@ -5,9 +5,10 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
-import com.google.common.reflect.TypeParameter;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -132,11 +133,18 @@ public class FastSave {
         if (isKeyExists(key)) {
             String objectString = mSharedPreferences.getString(key, null);
             if (objectString != null) {
-                return new Gson().fromJson(objectString, new com.google.common.reflect.TypeToken<List<T>>() {
+
+                ArrayList<T> t = new Gson().fromJson(objectString, new TypeToken<List<T>>() {
+                }.getType());
+
+                List<T> finalList = new ArrayList<>();
+
+                for (int i = 0; i < t.size(); i++) {
+                    String s = String.valueOf(t.get(i));
+                    finalList.add(new Gson().fromJson(s, classType));
                 }
-                        .where(new TypeParameter<T>() {
-                        }, classType)
-                        .getType());
+
+                return finalList;
             }
         }
 

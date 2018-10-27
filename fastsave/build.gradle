@@ -23,5 +23,4 @@ android {
 dependencies {
     //Gson
     implementation 'com.google.code.gson:gson:2.8.2'
-    implementation 'com.google.guava:guava:24.1-jre'
 }
