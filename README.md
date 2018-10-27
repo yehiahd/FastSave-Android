@@ -21,7 +21,7 @@ It allows you to save any type or list in the sharedpreferences and retrieve it 
 	Add the dependency in your app build.gradle
 	```gradle
   dependencies {
-      implementation 'com.github.yehiahd:FastSave-Android:1.0.5'
+      implementation 'com.github.yehiahd:FastSave-Android:1.0.6'
   }
 	```
 
@@ -43,7 +43,7 @@ It allows you to save any type or list in the sharedpreferences and retrieve it 
   <dependency>
   	    <groupId>com.github.yehiahd</groupId>
   	    <artifactId>FastSave-Android</artifactId>
-  	    <version>1.0.5</version>
+  	    <version>1.0.6</version>
   	</dependency>
 	```
 
