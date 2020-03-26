@@ -6,8 +6,10 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -111,7 +113,7 @@ public class FastSave {
         editor.apply();
     }
 
-    public <T> T getObject(String key, Class<T> classType) {
+    public <T> T getObject(String key, Class<T> classType) throws JsonSyntaxException {
         if (isKeyExists(key)) {
             String objectString = mSharedPreferences.getString(key, null);
             if (objectString != null) {
@@ -129,25 +131,15 @@ public class FastSave {
         editor.apply();
     }
 
-    public <T> List<T> getObjectsList(String key, Class<T> classType) {
+    public <T> List<T> getObjectsList(String key, Class<T> classType) throws JsonSyntaxException  {
         if (isKeyExists(key)) {
             String objectString = mSharedPreferences.getString(key, null);
             if (objectString != null) {
-
-                ArrayList<T> t = new Gson().fromJson(objectString, new TypeToken<List<T>>() {
-                }.getType());
-
-                List<T> finalList = new ArrayList<>();
-
-                for (int i = 0; i < t.size(); i++) {
-                    String s = String.valueOf(t.get(i));
-                    finalList.add(new Gson().fromJson(s, classType));
-                }
-
-                return finalList;
+                Type type = TypeToken.getParameterized(List.class, classType).getType();
+                ArrayList<T>  resultList = new Gson().fromJson(objectString, type);
+                return resultList;
             }
         }
-
         return null;
     }
 
