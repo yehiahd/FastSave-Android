@@ -24,6 +24,10 @@ public class FastSave {
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
     }
 
+    public static void init(SharedPreferences sharedPreferences) {
+        mSharedPreferences = sharedPreferences;
+    }
+
     public static FastSave getInstance() {
         if (instance == null) {
             validateInitialization();
