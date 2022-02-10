@@ -188,4 +188,24 @@ public class FastSave {
         }
     }
 
+    public boolean removeAllExcept(String... keys) {
+        Boolean isMatch = false;
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        for (String key : mSharedPreferences.getAll().keySet()) {
+            for (String k : keys) {
+                if (key.equals(k)) {
+                    isMatch = true;
+                }
+            }
+            if (!isMatch) {
+                editor.remove(key);
+            } else {
+                isMatch = false;
+            }
+        }
+        editor.apply();
+
+        return true;
+    }
+
 }
